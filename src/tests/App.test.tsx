@@ -72,13 +72,18 @@ describe('App Component', () :void => {
 
         const listItemBeforeDelete = app.getAllByRole('listitem')
         // console.log(listItemBeforeDelete.length)
-        console.log(listItemBeforeDelete.length)
+        expect(listItemBeforeDelete.length).toBe(2)
 
+        
         await userEvent.click(deleteButtons[0]) //click the first delete button which is Laundry
         
         
         const listItemAfterDelete = app.getAllByRole('listitem')
 
+        //initial state ['Laundry']
+        //then programatically adding Car Wash ['Laundry', 'Car Wash']
+        //after programatically clicking the first delete button which is laundry
+        //then state should be ['Laundry']
         expect(listItemAfterDelete.length).toBe(1)
     })
 })
