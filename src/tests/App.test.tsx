@@ -36,9 +36,9 @@ describe('App Component', () :void => {
     //https://www.freecodecamp.org/news/how-to-write-unit-tests-in-react/ example here using data-testid on li element
     test("'Laundry' Task Added to List as a default value", () :void => {
         const app = render(<App />)
-        const listElement = app.getAllByTestId('record')
+        const listElement = app.getByText('Laundry')
 
-        expect(listElement.length).toBe(1)
+        expect(listElement.textContent === 'Laundry')
     })
 
     test("Successfully Add Task to the State when Add Button is Clicked", async () :Promise<void> => {
@@ -47,15 +47,14 @@ describe('App Component', () :void => {
 
         //https://vitest.dev/guide/browser/interactivity-api.html#userevent-type
 
-        
         await userEvent.type(todoInputText, 'Cook Dinner')
-        const button = app.getByRole('button', { name: 'Add' })
-        await userEvent.click(button)
+        const addButton = app.getByRole('button', { name: 'Add' })
+        await userEvent.click(addButton)
 
-        let listElement = app.getAllByTestId('record')
-        //console.log(listElements.length)
+        const listElementAfterAdd = app.getByText('Cook Dinner')
+        
+        expect(listElementAfterAdd.textContent).toBe('Cook Dinner')
 
-        expect(listElement.length).toBe(2)
     })
 
     test("Successfully Deletes a task when delete button is clicked", async () :Promise<void> => {

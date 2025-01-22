@@ -66,9 +66,7 @@ const App = () => {
                   todos.map((todo :string, index: number) => (
                     <div key={index} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center', width: '300px' }}>
                       
-                      <li
-                      data-testid='record' //need this for testing do not forget
-                      >
+                      <li>
                         {todo}
                       </li>
 
